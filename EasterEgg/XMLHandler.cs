@@ -4,7 +4,7 @@ namespace EasterEgg
 {
     public class XMLHandler
     {
-        const bool DEBUG = true;
+        const bool DEBUG = false;
 
         public static string PATH { get; set; }
         public static XmlDocument xmlDocument { get; set; }

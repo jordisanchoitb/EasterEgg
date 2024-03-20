@@ -17,6 +17,6 @@ namespace EasterEgg
             Hp = hp;
             Def = def;
         }
-        public Character() : this("Inutil", 1, 5, 1, 4) { }
+        public Character() : this("Pepe", 10, 10, 100, 10) { }
     }
 }
