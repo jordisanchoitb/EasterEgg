@@ -100,37 +100,5 @@ namespace EasterEgg
 
             return characters;
         }
-
-        public void ModifyCharacter(Character character)
-        {
-            if (xmlDocument == null)
-            {
-                Console.WriteLine("XML document is not initialized.");
-                return;
-            }
-
-            XmlNodeList characterNodes = xmlDocument.SelectNodes("/entities/character");
-            if (characterNodes == null || characterNodes.Count == 0)
-            {
-                Console.WriteLine("No character nodes found in the XML document.");
-                return;
-            }
-
-            foreach (XmlNode node in characterNodes)
-            {
-                if (node.SelectSingleNode("Name").InnerText == character.Name)
-                {
-                    node.SelectSingleNode("Name").InnerText = character.Name.ToString();
-                    node.SelectSingleNode("Lvl").InnerText = character.Lvl.ToString();
-                    node.SelectSingleNode("Atk").InnerText = character.Atk.ToString();
-                    node.SelectSingleNode("Hp").InnerText = character.Hp.ToString();
-                    node.SelectSingleNode("Def").InnerText = character.Def.ToString();
-                    break;
-                }
-            }
-
-            xmlDocument.Save(PATH);
-            xmlDocument.Load(PATH);
-        }
     }
 }
