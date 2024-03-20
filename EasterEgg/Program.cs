@@ -95,9 +95,8 @@ namespace EasterEgg
                             Console.WriteLine(MsgIntroduceNameGame);
                             string name = Console.ReadLine() ?? "";
                             Character mycharacter = Methods.GetCharacterByName(xmlHandler, name);
-                            //Character randomcharacter = Methods.GetRandomCharacter(xmlHandler);
-                            Character character1 = Methods.GetCharacterByName(xmlHandler, "Pepe");
-                            Methods.Fight(mycharacter, character1, xmlHandler);
+                            Character randomcharacter = Methods.GetRandomCharacter(xmlHandler);
+                            Methods.Fight(mycharacter, randomcharacter, xmlHandler);
                             int userOption;
                             Console.WriteLine(MsgPlayOrNot);
                             userOption = Convert.ToInt32(Console.ReadLine());
@@ -139,11 +138,11 @@ namespace EasterEgg
                                 } else
                                 {
                                     string optionModify;
+                                    bool correctAnswer;
                                     Console.WriteLine(MsgModify, MsgName);
                                     optionModify = Console.ReadLine() ?? "";
                                     if (Methods.CheckYesNo(optionModify))
                                     {
-                                        bool correctName = false;
                                         do
                                         {
                                             Console.WriteLine(MsgCurrentValue, mycharacter.Name);
@@ -154,21 +153,20 @@ namespace EasterEgg
                                             {
                                                 Console.WriteLine(MsgExistCharacter);
                                                 Console.WriteLine(MsgTryAgain);
-                                                correctName = true;
+                                                correctAnswer = true;
                                             }
                                             else
                                             {
                                                 mycharacter.Name = newname;
-                                                correctName = false;
+                                                correctAnswer = false;
                                             }
-                                        } while (correctName);
+                                        } while (correctAnswer);
                                         Console.WriteLine(MsgChangeNameCorrectly);
                                     }
                                     Console.WriteLine(MsgModify, MsgLvl);
                                     optionModify = Console.ReadLine() ?? "";
                                     if (Methods.CheckYesNo(optionModify))
                                     {
-                                        bool correctLvl = false;
                                         do
                                         {
                                             Console.WriteLine(MsgCurrentValue, mycharacter.Lvl);
@@ -177,22 +175,21 @@ namespace EasterEgg
                                             if (Methods.CheckGreaterOrEqualThanNumber(Zero, newlvl))
                                             {
                                                 mycharacter.Lvl = newlvl;
-                                                correctLvl = false;
+                                                correctAnswer = false;
                                             }
                                             else
                                             {
                                                 Console.WriteLine(MsgErrorInputLvl, Zero);
                                                 Console.WriteLine(MsgTryAgain);
-                                                correctLvl = true;
+                                                correctAnswer = true;
                                             }
-                                        } while (correctLvl);                                       
+                                        } while (correctAnswer);                                       
                                         Console.WriteLine(MsgChangeLvlCorrectly);
                                     }
                                     Console.WriteLine(MsgModify, MsgAtk);
                                     optionModify = Console.ReadLine() ?? "";
                                     if (Methods.CheckYesNo(optionModify))
                                     {
-                                        bool correctAtk = false;
                                         do
                                         {
                                             Console.WriteLine(MsgCurrentValue, mycharacter.Atk);
@@ -201,22 +198,21 @@ namespace EasterEgg
                                             if (Methods.CheckGreaterOrEqualThanNumber(Zero, newatk))
                                             {
                                                 mycharacter.Atk = newatk;
-                                                correctAtk = false;
+                                                correctAnswer = false;
                                             }
                                             else
                                             {
                                                 Console.WriteLine(MsgErrorInputAtk, Zero);
                                                 Console.WriteLine(MsgTryAgain);
-                                                correctAtk = true;
+                                                correctAnswer = true;
                                             }
-                                        } while (correctAtk);
+                                        } while (correctAnswer);
                                         Console.WriteLine(MsgChangeAtkCorrectly);
                                     }
                                     Console.WriteLine(MsgModify, MsgHp);
                                     optionModify = Console.ReadLine() ?? "";
                                     if (Methods.CheckYesNo(optionModify))
                                     {
-                                        bool correctHp = false;
                                         do
                                         {
                                             Console.WriteLine(MsgCurrentValue, mycharacter.Hp);
@@ -225,22 +221,21 @@ namespace EasterEgg
                                             if (Methods.CheckGreaterOrEqualThanNumber(MinHp, newhp))
                                             {
                                                 mycharacter.Hp = newhp;
-                                                correctHp = false;
+                                                correctAnswer = false;
                                             }
                                             else
                                             {
                                                 Console.WriteLine(MsgErrorInputHp, MinHp);
                                                 Console.WriteLine(MsgTryAgain);
-                                                correctHp = true;
+                                                correctAnswer = true;
                                             }
-                                        } while (correctHp);
+                                        } while (correctAnswer);
                                         Console.WriteLine(MsgChangeHpCorrectly);
                                     }
                                     Console.WriteLine(MsgModify, MsgDef);
                                     optionModify = Console.ReadLine() ?? "";
                                     if (Methods.CheckYesNo(optionModify))
                                     {
-                                        bool correctDef = false;
                                         do
                                         {
                                             Console.WriteLine(MsgCurrentValue, mycharacter.Def);
@@ -249,15 +244,15 @@ namespace EasterEgg
                                             if (Methods.CheckGreaterOrEqualThanNumber(Zero, newdef))
                                             {
                                                 mycharacter.Def = newdef;
-                                                correctDef = false;
+                                                correctAnswer = false;
                                             }
                                             else
                                             {
                                                 Console.WriteLine(MsgErrorInputDef, Zero);
                                                 Console.WriteLine(MsgTryAgain);
-                                                correctDef = true;
+                                                correctAnswer = true;
                                             }
-                                        } while (correctDef);
+                                        } while (correctAnswer);
                                         Console.WriteLine(MsgChangeDefCorrectly);
                                     }
                                     xmlHandler.ModifyCharacter(mycharacter);
